@@ -1,0 +1,18 @@
+; Include forcefield parameters
+#include "/fs/scratch/PMIU0124/UFF_2023/forcefield/forcefield.itp"
+;#include "oplsaa.ff/forcefield.itp"
+
+; chloroform
+#include "/fs/scratch/PMIU0124/UFF_2023/forcefield/chcl3.itp"
+#include "/fs/scratch/PMIU0124/UFF_2023/forcefield/chcl3_fe.itp"
+
+; water
+#include "/fs/scratch/PMIU0124/UFF_2023/forcefield/water.itp"
+
+[ system ]
+ SOL
+
+[ molecules ]
+SOUT 1
+CHCL 731
+

@@ -1,0 +1,95 @@
+;
+; Short npt_equilibration at 298.15 K using Berendsen thermostat and barostat
+;
+
+; RUN CONTROL PARAMETERS
+; integrator
+integrator               = md
+; initial time in ps
+tinit                    = 0
+; time step in ps (note 1000 fs = 1 ps)
+dt                       = 0.002  ; 2 fs
+; number of steps (nsteps * dt = simulation time)
+; (note 1000 ps = 1 ns)
+nsteps                   = 1000000  ; 2 ns
+; the starting step
+init-step                = 0
+; mode for center of mass removal
+comm-mode                = Linear
+; frequency for center of mass removal
+nstcomm                  = 10
+
+; OUTPUT CONTROL
+; frequency to write coordinates to output trajectory file (in steps)
+; (note the trajectory file is a binary)
+nstxout                  = 5000 ; 10.0 ps
+; frequency to write velocities
+nstvout                  = 0  ; never
+; frequency to write forces
+nstfout                  = 0
+; frequency to write energies to log file (this is the ascii file)
+nstlog                   = 10000 ; 20.0 ps
+; frequency to write energies to energy file (this is the binary energy file)
+nstenergy                = 5000 ; 10.0 ps
+; frequency to calculate energy (should be equal to or multiple of nstlist)
+nstcalcenergy            = -1
+; frequency to write coordinates to xtc trajectory
+nstxtcout                = 0  ; never
+
+; NEIGHBORSEARCHING PARAMETERS
+cutoff-scheme            = Verlet
+nstlist                  = 10
+verlet-buffer-tolerance  = 0.005
+ns-type                  = grid
+pbc                      = xyz
+periodic-molecules       = no
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; electrostatic type
+coulombtype              = PME
+; real space cutoff
+rcoulomb                 = 1.4
+; method for vdW (LJ)
+vdwtype                  = Cut-off
+; cut-off lengths
+rvdw                     = 1.4
+; Apply long range dispersion corrections for Energy and Pressure
+DispCorr                 = EnerPres
+; Spacing for the PME/PPPM FFT grid
+fourierspacing           = 0.12
+; EWALD/PME/PPPM parameters
+pme-order                = 4
+ewald-rtol               = 1e-08
+ewald-geometry           = 3d
+epsilon-surface          = 0
+optimize_fft             = yes
+
+; OPTIONS FOR WEAK COUPLING ALGORITHM
+; temperature coupling
+tcoupl                   = berendsen
+; Groups to couple separately
+tc_grps                  = system
+; Time constant (ps) and reference temperature (K)
+tau-t                    = 1.0     
+ref-t                    = 298.15
+nsttcouple               = -1
+; Pressure coupling
+pcoupl                   = berendsen
+pcoupltype               = isotropic
+; Time constant (ps) and reference pressure (bar)
+tau-p                    = 4.0
+ref-p                    = 1.0
+compressibility          = 4.5e-5
+nstpcouple               = -1
+
+; VELOCITY GENERATION
+gen-vel                  = yes
+gen-temp                 = 298.15
+gen-seed                 = 101
+
+; OPTIONS FOR BONDS
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 8
+lincs-iter               = 2
+lincs-warnangle          = 30

@@ -1,0 +1,53 @@
+;
+; Short minimization to remove bad contacts
+; 
+
+; RUN CONTROL PARAMETERS
+; CG and steep work with constraints for minimization 
+integrator               = steep
+; maximum number of steps (-1 is no maximum)
+nsteps                   = 3000
+
+; NEIGHBORSEARCHING PARAMETERS
+cutoff-scheme            = Verlet
+nstlist                  = 10
+verlet-buffer-tolerance  = 0.005
+ns-type                  = grid
+pbc                      = xyz
+periodic-molecules       = no
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; electrostatic type
+coulombtype              = PME
+; real space cutoff
+rcoulomb                 = 1.4
+; method for vdW (LJ)
+vdwtype                  = Cut-off
+; cut-off lengths
+rvdw                     = 1.4
+; Apply long range dispersion corrections for Energy and Pressure
+DispCorr                 = EnerPres
+; Spacing for the PME/PPPM FFT grid
+fourierspacing           = 0.12
+; EWALD/PME/PPPM parameters
+pme-order                = 4
+ewald-rtol               = 1e-08
+ewald-geometry           = 3d
+epsilon-surface          = 0
+optimize_fft             = yes
+
+; OPTIONS FOR BONDS
+constraints              = h-bonds
+constraint-algorithm     = LINCS
+; Highest order in the expansion of the constraint coupling matrix
+lincs-order              = 12
+; Number of iterations in the final step of LINCS. 1 is fine for
+; normal simulations, but use 2 to conserve energy in NVE runs.
+; For energy minimization with constraints it should be 4 to 8.
+lincs-iter               = 8
+; Lincs will write a warning to the stderr if in one step a bond
+; rotates over more degrees than
+lincs-warnangle          = 45
+; Convert harmonic bonds to morse potentials
+morse                    = no
+

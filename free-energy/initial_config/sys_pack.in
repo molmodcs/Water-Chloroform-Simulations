@@ -1,0 +1,24 @@
+tolerance 2
+
+maxit 50
+
+# Random seed
+seed 101
+
+# The file type of input and output files is pdb
+filetype xyz
+
+# The name of the output file
+output sys_pack.xyz
+
+# water or chcl3
+structure /fs/scratch/PMIU0124/UFF_2023/forcefield/chcl3.xyz
+  number 1
+  inside cube 0. 0. 0. 46.0
+end structure
+
+structure /fs/scratch/PMIU0124/UFF_2023/forcefield/chcl3.xyz
+  number 731
+  inside cube 0. 0. 0. 46.0
+end structure
+

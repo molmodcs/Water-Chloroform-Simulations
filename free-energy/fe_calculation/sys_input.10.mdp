@@ -1,0 +1,150 @@
+;
+; npt_production at 298.15 K
+;
+
+; RUN CONTROL PARAMETERS
+; integrator
+integrator               = sd
+; initial time in ps
+tinit                    = 0
+; time step in ps (note 1000 fs = 1 ps)
+dt                       = 0.002  ; 2 fs
+; number of steps (nsteps * dt = simulation time)
+; (note 1000 ps = 1 ns)
+; We will take the first 2 ns as equilibration
+; and compute averages over the last 20 ns.
+nsteps                   = 11000000  ; 22 ns
+; the starting step
+init-step                = 0
+; mode for center of mass removal
+comm-mode                = Linear
+; frequency for center of mass removal
+nstcomm                  = 10
+
+; OUTPUT CONTROL
+; frequency to write coordinates to output trajectory file (in steps)
+; (note the trajectory file is a binary)
+nstxout                  = 5000 ; 10.0 ps
+; frequency to write velocities
+nstvout                  = 0  ; never
+; frequency to write forces
+nstfout                  = 0
+; frequency to write energies to log file (this is the ascii file)
+nstlog                   = 10000 ; 20.0 ps
+; *******************************
+; frequency to write energies to energy file (this is the binary energy file)
+; *******************************
+; *******************************
+; This is the only parameter in the non-FE section that is changed.
+; It is only changed because we will calculated differences in the energy
+; for the FE calcutions with this frequency, so we should just as well
+; print it here too. 10 ps for npt runs, now 0.20 ps.
+; *******************************
+;********************************
+nstenergy                = 100 ; 0.20 ps
+; *******************************
+; frequency to calculate energy (should be equal to or multiple of nstlist)
+nstcalcenergy            = -1
+; frequency to write coordinates to xtc trajectory
+nstxtcout                = 0  ; never
+
+; NEIGHBORSEARCHING PARAMETERS
+cutoff-scheme            = Verlet
+nstlist                  = 10
+verlet-buffer-tolerance  = 0.005
+ns-type                  = grid
+pbc                      = xyz
+periodic-molecules       = no
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; electrostatic type
+coulombtype              = PME
+; real space cutoff
+rcoulomb                 = 1.4
+; method for vdW (LJ)
+vdwtype                  = Cut-off
+; cut-off lengths
+rvdw                     = 1.4
+; Apply long range dispersion corrections for Energy and Pressure
+DispCorr                 = EnerPres
+; Spacing for the PME/PPPM FFT grid
+fourierspacing           = 0.12
+; EWALD/PME/PPPM parameters
+pme-order                = 4
+ewald-rtol               = 1e-08
+ewald-geometry           = 3d
+epsilon-surface          = 0
+optimize_fft             = yes
+
+; OPTIONS FOR WEAK COUPLING ALGORITHM
+; temperature coupling
+; tcoupl is implicitly handled by the sd integrator
+; Groups to couple separately
+tc_grps                  = system
+; Time constant (ps) and reference temperature (K)
+tau-t                    = 1.0
+ref-t                    = 298.15
+nsttcouple               = -1
+; Pressure coupling
+pcoupl                   = Parrinello-Rahman
+pcoupltype               = isotropic
+; Time constant (ps) and reference pressure (bar)
+tau-p                    = 4.0
+ref-p                    = 1.0
+compressibility          = 4.5e-5
+nstpcouple               = -1
+
+; VELOCITY GENERATION
+gen-vel                  = yes
+gen-temp                 = 298.15
+gen-seed                 = 110
+
+; OPTIONS FOR BONDS
+constraints              = h-bonds
+constraint-algorithm     = lincs
+lincs-order              = 8
+lincs-iter               = 2
+lincs-warnangle          = 30
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; FREE ENERGY CONTROL
+free-energy              = yes
+
+; Standard soft-core potential parameters
+sc-alpha                 = 0.5
+sc-r-power               = 6
+sc-power                 = 1
+
+; The molecule being coupled/decoupled
+couple-moltype           = SOUT ; special molecule
+
+; Sub-ensemble of current simulation
+init-lambda-state        = 10
+
+; Defining our target and reference state.
+; My preference is for lambda = 0 to correspond to the IG state,
+; where intermolecular interactions are off and for
+; lambda = 1 to correspond to the target state, where intermolecular
+; interactions are at full strength.
+;
+; Defining lambda = 0 (ideal gas state)
+couple-lambda0           = none
+; Defining lambda = 1 (fully interacting state)
+couple-lambda1           = vdw-q
+; Keep intramolecular interactions ON in all states
+couple-intramol          = no
+
+; Lambda values of each sub-ensemble
+; Same linear scaling sub-ensembles 0-5 as with alkanes.
+; For charges we will add subensembles 6-9 where charges are scaled as sqrt(1/m_q)
+;                      m =  0    1    2    3    4    5     6    7    8    9  10    11   12   13   14
+vdw-lambdas              = 0.00 0.10 0.20 0.30 0.40 0.50 0.60 0.70 0.80 0.90 1.00  1.00 1.00 1.00 1.00
+coul-lambdas             = 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00  0.50 0.71 0.87 1.00
+
+; Print the differnces in Hamiltonians between all lambda values for MBAR
+calc-lambda-neighbors = -1
+
+; Frequency at which difference in the Hamiltonians is calculated
+; (Set to same as nstenergy)
+nstdhdl                  = 100  ; 0.20 ps
+
