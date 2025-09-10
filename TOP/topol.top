@@ -1,0 +1,14 @@
+; topology generated for water
+; Include forcefield parameters
+#include "/home2/jarede/doutorado/gromacs/interfacenova/forcefield/forcefield.itp"
+
+
+; Include water topology
+#include "water2005.itp"
+#include "chcl3.itp"
+
+[ system ]
+ chcl3
+[ molecules ]
+water  2140
+CHCL  481
