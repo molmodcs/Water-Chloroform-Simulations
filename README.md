@@ -1,5 +1,12 @@
 # Water-Chloroform-Simulations
 
+
+<img
+  src="./Graphical_Abstract.pdf"
+  alt="Alt text"
+  title="Graphical abstract"
+  style="display: inline-block; margin: 1.5 auto; max-width: 300px">
+
 This work provides a comprehensive analysis of the immiscible water-chloroform system using all-atom molecular
 dynamics simulations. We systematically investigate the structural, dynamic, and thermodynamic properties of both
 the pure and mixed phases to elucidate the fundamental forces governing their behavior. Our solvation free energy
