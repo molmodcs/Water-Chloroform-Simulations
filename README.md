@@ -2,7 +2,7 @@
 
 
 <img
-  src="./Graphical_Abstract.pdf"
+  src="./Graphical_Abstract.png"
   alt="Alt text"
   title="Graphical abstract"
   style="display: inline-block; margin: 1.5 auto; max-width: 300px">
