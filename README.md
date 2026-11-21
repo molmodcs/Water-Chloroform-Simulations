@@ -7,19 +7,24 @@
   title="Graphical abstract"
   style="display: inline-block; margin: 1.5 auto; max-width: 300px">
 
+## Abstract
 
-@article{10.1063/5.0304124,
-    author = {Albuquerque, Marcelo and Pereira, Alexandre Moni and Martins, Jarede S. and Torres, Vanessa and Paluch, Andrew S. and Costa, Luciano T.},
-    title = {Water and chloroform pure component and binary mixtures: New insights from molecular dynamics simulations},
-    journal = {The Journal of Chemical Physics},
-    volume = {164},
-    number = {6},
-    pages = {064702},
-    year = {2026},
-    month = {02},
-    abstract = {This work provides a comprehensive analysis of the immiscible water–chloroform system using all-atom molecular dynamics simulations. We systematically investigate the structural, dynamic, and thermodynamic properties of both the pure and mixed phases to elucidate the fundamental forces governing their behavior. Our solvation free energy calculations reveal that both water and chloroform molecules exhibit a strong preference for self-association, with cross-solvation energies being significantly less favorable than self-solvation. This is the primary thermodynamic driving force behind the system’s immiscibility, a finding corroborated by our calculation of a positive excess entropy of mixing. At a structural level, our analysis confirms that within the Gibbs dividing surface, water molecules are more ordered and coordinated than chloroform molecules. This interfacial organization, in turn, influences the dynamics of the system, as evidenced by a longer dipole correlation time for water and a decrease in the diffusion coefficients for both components in the mixture compared to their pure counterparts. Our findings for key properties, including the density of states and diffusion coefficients, are in good agreement with available experimental and computational data, validating our approach. This study provides a fundamental, multi-faceted description of the water–chloroform mixture, which can serve as a valuable reference system for understanding physicochemical phase separation.},
-    issn = {0021-9606},
-    doi = {10.1063/5.0304124},
-    url = {https://doi.org/10.1063/5.0304124},
-    eprint = {https://pubs.aip.org/aip/jcp/article-pdf/doi/10.1063/5.0304124/20894002/064702_1_5.0304124.pdf},
+This work provides a comprehensive analysis of the immiscible water–chloroform system using all-atom molecular dynamics simulations. We systematically investigate the structural, dynamic, and thermodynamic properties of both the pure and mixed phases to elucidate the fundamental forces governing their behavior. Our solvation free energy calculations reveal that both water and chloroform molecules exhibit a strong preference for self-association, with cross-solvation energies being significantly less favorable than self-solvation. This is the primary thermodynamic driving force behind the system’s immiscibility, a finding corroborated by our calculation of a positive excess entropy of mixing. At a structural level, our analysis confirms that within the Gibbs dividing surface, water molecules are more ordered and coordinated than chloroform molecules. This interfacial organization, in turn, influences the dynamics of the system, as evidenced by a longer dipole correlation time for water and a decrease in the diffusion coefficients for both components in the mixture compared to their pure counterparts. Our findings for key properties, including the density of states and diffusion coefficients, are in good agreement with available experimental and computational data, validating our approach. This study provides a fundamental, multi-faceted description of the water–chloroform mixture, which can serve as a valuable reference system for understanding physicochemical phase separation.
+
+## BibTeX
+
+```bibtex
+@article{albuquerque2026water,
+  author  = {Albuquerque, Marcelo and Pereira, Alexandre Moni and Martins, Jarede S. and Torres, Vanessa and Paluch, Andrew S. and Costa, Luciano T.},
+  title   = {Water and chloroform pure component and binary mixtures: New insights from molecular dynamics simulations},
+  journal = {The Journal of Chemical Physics},
+  volume  = {164},
+  number  = {6},
+  pages   = {064702},
+  year    = {2026},
+  month   = {02},
+  issn    = {0021-9606},
+  doi     = {10.1063/5.0304124},
+  url     = {https://doi.org}
 }
+```
